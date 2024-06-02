@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aplicativo de Anotações</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  #noteInput {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 5px;
+  }
+  #noteList {
+    list-style-type: none;
+    padding: 0;
+  }
+  .noteItem {
+    padding: 10px;
+    border: 1px solid #1bca52;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .noteItem button {
+    background-color: #f44336;
+    color: rgb(244, 240, 12);
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h2>Aplicativo de Anotações</h2>
+  <input type="text" id="noteInput" placeholder="Digite sua nota aqui">
+  <button onclick="addNote()">Adicionar Nota</button>
+  <ul id="noteList"></ul>
+</div>
+
+<script>
+  function addNote() {
+    var noteInput = document.getElementById('noteInput');
+    var noteText = noteInput.value.trim();
+    if (noteText !== '') {
+      var noteList = document.getElementById('noteList');
+      var li = document.createElement('li');
+      li.className = 'noteItem';
+      li.innerHTML = noteText + '<button onclick="deleteNote(this)">Excluir</button>';
+      noteList.appendChild(li);
+      noteInput.value = '';
+    }
+  }
+
+  function deleteNote(element) {
+    var noteItem = element.parentNode;
+    noteItem.parentNode.removeChild(noteItem);
+  }
+</script>
+</body>
+</html>
